@@ -33,6 +33,31 @@ for x in lre_train lre17_eval_3s lre17_eval_10s lre17_eval_30s;do
   utils/fix_data_dir.sh data-16k/$x
 done
 ```
+
+### Add Noise
+In order to test the performance of the system under noisy background, all data sets are denoised.
+Different channels of rats data set are used as noise, in which channel A,E,H is used as noise data of test set, B,C,D,F,G channel is used as noise of training set.
+
+At the same time, different SNR (5, 10, 15, 20) are used for noise addition, The smaller the SNR, the greater the noise.
+Before running, you need to change ```rats_data``` variable, change to your own rats noise data path.
+
+```
+cd Add-Noise
+
+# for training data set
+bash add-noise-for-lid.sh --steps 1-2 --src-train data-16k/lre_train --noise_dir data-16k/rats_noise_channel_BCDFG
+
+# fot test set
+bash add-noise-for-lid.sh --steps 2 --src-train data-16k/lre_eval_3s --noise_dir data-16k/rats_noise_channel_AEH
+bash add-noise-for-lid.sh --steps 2 --src-train data-16k/lre_eval_10s --noise_dir data-16k/rats_noise_channel_AEH
+bash add-noise-for-lid.sh --steps 2 --src-train data-16k/lre_eval_30s --noise_dir data-16k/rats_noise_channel_AEH
+```
+After run "add-noise-for-lid.sh" script, Each folder generates four additional folders
+egs: 
+  for lre_train, will generate lre_train_5_snrs、lre_train_10_snrs、lre_train_15_snrs、lre_train_20_snrs
+
+Generate new wav file for noise data
+
 ## Training pipiline
 
 ## Notice
