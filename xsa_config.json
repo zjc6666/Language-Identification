@@ -1,0 +1,45 @@
+{
+  "model_name": "xvector_self_attention",
+  "exp": "exp",
+  "wav2vec_info":{
+    "model_path": "pretrained-model/xlsr_53_56k.pt",
+    "model_name": "pretrained_model",
+    "layer": 16,
+    "m_size": "large",
+    "_comment": "FOr language recognition, XLSR-53 is recommended as the feature extractor"
+  },
+  "Input": {
+    "userroot": "/home3/jicheng/w2021/JSTSP_code_simple/",
+    "train_set": "data/lre17_train_1.5_1.5_30_overlap_27.5s_include_dev_5th/",
+    "valid_set": "data/lre17_train_1.5_1.5_30_overlap_27.5s_valid/",
+    "test_sets": "data/lre17_eval_3s data/lre17_eval_10s data/lre17_eval_30s  data/lre17_eval_3s_5_snrs data/lre17_eval_3s_10_snrs data/lre17_eval_3s_15_snrs data/lre17_eval_3s_20_snrs data/lre17_eval_10s_5_snrs data/lre17_eval_10s_10_snrs data/lre17_eval_10s_15_snrs data/lre17_eval_10s_20_snrs data/lre17_eval_30s_5_snrs data/lre17_eval_30s_10_snrs data/lre17_eval_30s_15_snrs data/lre17_eval_30s_20_snrs",
+    "log": "log/",
+    "_comment": "Input your data dir here, each line: data_file_path lable_index segment_len"
+  },
+  "model_config": {
+    "model": "xsa",
+    "feat_dim": 1024,
+    "reduc_dim": 256,
+    "d_k": 64,
+    "d_ff": 2048,
+    "n_heads": 8,
+    "n_language": 14,
+    "_comment": "Model configurations, do not change unless you need to modify the model"
+  },
+  "optim_config": {
+    "learning_rate": 0.0001,
+    "epochs": 35,
+    "batch": 128,
+    "optimizer": "Adam",
+    "scheduler": "warmup_cosine",
+    "num_work": 4,
+    "device": 0,
+    "DDP": "False",
+    "warmup_step": -1,
+    "valid_epochs": 3,
+    "seed": -1,
+    "_comment": "warmup_step = -1 denotes default value, num_work is better to be your_cpu_cores/4"
+  },
+  "kaldi": "/home/maison2/kaldi/",
+  "check_point": "exp-backup/xsa_27.ckpt"
+}
