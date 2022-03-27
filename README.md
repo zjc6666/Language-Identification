@@ -56,7 +56,39 @@ After run "add-noise-for-lid.sh" script, Each folder generates four additional f
 egs: 
   for lre_train, will generate lre_train_5_snrs、lre_train_10_snrs、lre_train_15_snrs、lre_train_20_snrs
 
-Generate new wav file for noise data
+### Generate new wav file for noise data
+
+You should change this path "/home3/jicheng/source-data/lre17-16k/" to yourself path.
+```
+save_16k_dir=/home3/jicheng/source-data/lre17-16k/
+for x in lre_train_5srns lre_train_10srns lre_train_15srns lre_train_20srns 
+        lre17_eval_3s_5_snrs lre17_eval_3s_10_snrs lre17_eval_3s_15_snrs lre17_eval_3s_20_snrs 
+        lre17_eval_10s_5_snrs lre17_eval_10s_10_snrs lre17_eval_10s_15_snrs lre17_eval_10s_20_snrs 
+        lre17_eval_30s_5_snrs lre17_eval_30s_10_snrs lre17_eval_30s_15_snrs lre17_eval_30s_20_snrs; do
+  cat data-16k/$x/wav.scp | 
+    awk -v n=$x p=$save_16k_dir '{l = length($0); a = substr($0, 0,length-3); print $2" "$3" "$4" "$5" "$6" "$7 " " p "/" n "/" $1 ".wav"}' > data-16k/$x/${x}.cmd
+    bash generate_new_wav_cmd.sh $x/$x.cmd
+done
+
+save_16k_dir=/home3/jicheng/source-data/lre17-16k/
+for x in lre17_eval_3s lre17_eval_10s lre17_eval_30s;do
+    for y in 5 10 15 20;do
+        cp data-16k/$x/{utt2spk,wav.scp,utt2lang,spk2utt,reco2dur} data-16k/${x}"_"${y}"_snrs/"
+        local=${save_16k_dir}"/"${x}"_"${y}"_snrs/"
+        cat data-16k/${x}"_"${y}_snrs/wav.scp | awk -v p=$local '{print $1 " " p "noise-" $1 ".wav"}' > data-16k/${x}"_"${y}_snrs/new_wav.scp
+        mv data-16k/${x}"_"${y}_snrs/new_wav.scp data-16k/${x}"_"${y}_snrs/wav.scp
+    done
+done
+
+for x in lre17_train;do
+    for y in 5 10 15 20;do
+        cp data-16k/$x/{utt2spk,wav.scp,utt2lang,spk2utt,reco2dur} data-16k/${x}"_"${y}"_snrs/"
+        local=${save_16k_dir}"/"${x}"_"${y}"_snrs/"
+        cat data-16k/${x}"_"${y}_snrs/wav.scp | awk -v p=$local '{print $1 " " p "noise-" $1 ".wav"}' > data-16k/${x}"_"${y}_snrs/new_wav.scp
+        mv data-16k/${x}"_"${y}_snrs/new_wav.scp data-16k/${x}"_"${y}_snrs/wav.scp
+    done
+done
+```
 
 ## Training pipiline
 
