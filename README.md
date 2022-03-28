@@ -7,6 +7,7 @@ Our proposed model aims to use the feature of wav2vec2 model, but the pretrained
 Therefore, in order to ensure the effect of pretrained model, all data are transformed into 16K(includde train, valid and test set).
 
 ```
+utils/combine_data_dir.sh data/lre_train data/lre_valid data/lre17_dev_3s data/lre17_dev_10s data/lre17_dev_30s data/lre_train_all
 ## wav_scp: The wav.scp file of the dataset you want to upsample
 ## temp_dir: Temporary folders
 ## save_16k_dir: Save address of wav file after downsampling
@@ -14,7 +15,7 @@ Therefore, in order to ensure the effect of pretrained model, all data are trans
 python3 upsampling_16k.py wav_scp temp_dir save_16k_dir
 
 egs:
-python3 upsampling_16k.py data/lre17_train/wav.scp /home3/jicheng/source-data/temp/ /home3/jicheng/source-data/lre17-16k/lre_train
+python3 upsampling_16k.py data/lre17_train_all/wav.scp /home3/jicheng/source-data/temp/ /home3/jicheng/source-data/lre17-16k/lre_train
 python3 upsampling_16k.py data/lre17_eval_3s/wav.scp /home3/jicheng/source-data/temp/ /home3/jicheng/source-data/lre17-16k/lre17_eval_3s
 python3 upsampling_16k.py data/lre17_eval_10s/wav.scp /home3/jicheng/source-data/temp/ /home3/jicheng/source-data/lre17-16k/lre17_eval_10s
 python3 upsampling_16k.py data/lre17_eval_30s/wav.scp /home3/jicheng/source-data/temp/ /home3/jicheng/source-data/lre17-16k/lre17_eval_30s
@@ -92,6 +93,12 @@ for x in lre17_train;do
 done
 ```
 
-## Training pipiline
+## Training pipeline
+### Extracting wav2vec2 features
+ 
+
+
+## Test pipeline
+
 
 ## Notice
