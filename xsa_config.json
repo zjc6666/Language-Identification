@@ -10,9 +10,9 @@
   },
   "Input": {
     "userroot": "/home3/jicheng/w2021/JSTSP_code_simple/",
-    "train_set": "data/lre17_train_1.5_1.5_30_overlap_27.5s_include_dev_5th/",
-    "valid_set": "data/lre17_train_1.5_1.5_30_overlap_27.5s_valid/",
-    "test_sets": "data/lre17_eval_3s data/lre17_eval_10s data/lre17_eval_30s  data/lre17_eval_3s_5_snrs data/lre17_eval_3s_10_snrs data/lre17_eval_3s_15_snrs data/lre17_eval_3s_20_snrs data/lre17_eval_10s_5_snrs data/lre17_eval_10s_10_snrs data/lre17_eval_10s_15_snrs data/lre17_eval_10s_20_snrs data/lre17_eval_30s_5_snrs data/lre17_eval_30s_10_snrs data/lre17_eval_30s_15_snrs data/lre17_eval_30s_20_snrs",
+    "train_set": "data-16k/lre17_train",
+    "valid_set": "none",
+    "test_sets": "data-16k/lre17_eval_3s data-16k/lre17_eval_10s data-16k/lre17_eval_30s  data-16k/lre17_eval_3s_5_snrs data-16k/lre17_eval_3s_10_snrs data-16k/lre17_eval_3s_15_snrs data-16k/lre17_eval_3s_20_snrs data-16k/lre17_eval_10s_5_snrs data-16k/lre17_eval_10s_10_snrs data-16k/lre17_eval_10s_15_snrs data-16k/lre17_eval_10s_20_snrs data-16k/lre17_eval_30s_5_snrs data-16k/lre17_eval_30s_10_snrs data-16k/lre17_eval_30s_15_snrs data-16k/lre17_eval_30s_20_snrs",
     "log": "log/",
     "_comment": "Input your data dir here, each line: data_file_path lable_index segment_len"
   },
@@ -41,5 +41,5 @@
     "_comment": "warmup_step = -1 denotes default value, num_work is better to be your_cpu_cores/4"
   },
   "kaldi": "/home/maison2/kaldi/",
-  "check_point": "exp-backup/xsa_27.ckpt"
+  "check_point": "exp/xsa_27.ckpt"
 }
