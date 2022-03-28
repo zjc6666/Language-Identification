@@ -48,9 +48,9 @@ cd Add-Noise
 bash add-noise-for-lid.sh --steps 1-2 --src-train data-16k/lre_train --noise_dir data-16k/rats_noise_channel_BCDFG
 
 # fot test set
-bash add-noise-for-lid.sh --steps 2 --src-train data-16k/lre_eval_3s --noise_dir data-16k/rats_noise_channel_AEH
-bash add-noise-for-lid.sh --steps 2 --src-train data-16k/lre_eval_10s --noise_dir data-16k/rats_noise_channel_AEH
-bash add-noise-for-lid.sh --steps 2 --src-train data-16k/lre_eval_30s --noise_dir data-16k/rats_noise_channel_AEH
+bash add-noise-for-lid.sh --steps 2 --src-train ../data-16k/lre_eval_3s --noise_dir ../data-16k/rats_noise_channel_AEH
+bash add-noise-for-lid.sh --steps 2 --src-train ../data-16k/lre_eval_10s --noise_dir ../data-16k/rats_noise_channel_AEH
+bash add-noise-for-lid.sh --steps 2 --src-train ../data-16k/lre_eval_30s --noise_dir ../data-16k/rats_noise_channel_AEH
 ```
 After run "add-noise-for-lid.sh" script, Each folder generates four additional folders
 egs: 
