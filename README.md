@@ -104,7 +104,10 @@ python3 process_lre_data.py
 python3 train_xsa.py
 ```
 ## Test pipeline
-
+You can change "check_point" variable in xsa_config.json file, Change to the epoch you want to use.
+```
+python3 test.py
+```
 
 ## Notice
 All the required parameters in the script are written in the xsa_config.json file.
