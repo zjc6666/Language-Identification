@@ -95,10 +95,16 @@ done
 
 ## Training pipeline
 ### Extracting wav2vec2 features
- 
 
-
+```
+python3 process_lre_data.py
+```
+### Training
+```
+python3 train_xsa.py
+```
 ## Test pipeline
 
 
 ## Notice
+All the required parameters in the script are written in the xsa_config.json file.
