@@ -70,7 +70,6 @@ for x in lre_train_5srns lre_train_10srns lre_train_15srns lre_train_20srns
     bash generate_new_wav_cmd.sh $x/$x.cmd
 done
 
-save_16k_dir=/home3/jicheng/source-data/lre17-16k/
 for x in lre17_eval_3s lre17_eval_10s lre17_eval_30s;do
     for y in 5 10 15 20;do
         cp data-16k/$x/{utt2spk,wav.scp,utt2lang,spk2utt,reco2dur} data-16k/${x}"_"${y}"_snrs/"
@@ -83,9 +82,10 @@ done
 for x in lre17_train;do
     for y in 5 10 15 20;do
         path=${save_16k_dir}/${x}_${y}_snrs/
+        snrs=_${y}_snrs
         rm data-16k/${x}_${y}_snrs/{reco2dur,spk2utt,utt2uniq,wav.scp}
-        cat data-16k/${x}_${y}_snrs/utt2lang | awk -v p=$path '{l=length($1);name=substr($1,7,l);print name "_10_snrs " p $1".wav"}' > data-16k/${x}_${y}_snrs/wav.scp
-        cat data-16k/${x}_${y}_snrs/utt2lang | awk -v p=$path '{l=length($1);name=substr($1,7,l);print name "_20_snrs " $2}' > data-16k/${x}_${y}_snrs/utt2spk
+        cat data-16k/${x}_${y}_snrs/utt2lang | awk -v p=$path s=${snrs} '{l=length($1);name=substr($1,7,l);print name s" " p $1".wav"}' > data-16k/${x}_${y}_snrs/wav.scp
+        cat data-16k/${x}_${y}_snrs/utt2lang | awk -v p=$path s=${snrs} '{l=length($1);name=substr($1,7,l);print name p" " $2}' > data-16k/${x}_${y}_snrs/utt2spk
         cp data-16k/${x}_${y}_snrs/utt2spk data-16k/${x}_${y}_snrs/utt2lang
         utils/fix_data_dir.sh data-16k/${x}_${y}_snrs/
     done
