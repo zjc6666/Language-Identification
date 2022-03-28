@@ -82,10 +82,12 @@ done
 
 for x in lre17_train;do
     for y in 5 10 15 20;do
-        cp data-16k/$x/{utt2spk,wav.scp,utt2lang,spk2utt,reco2dur} data-16k/${x}"_"${y}"_snrs/"
-        local=${save_16k_dir}"/"${x}"_"${y}"_snrs/"
-        cat data-16k/${x}"_"${y}_snrs/wav.scp | awk -v p=$local '{print $1 " " p "noise-" $1 ".wav"}' > data-16k/${x}"_"${y}_snrs/new_wav.scp
-        mv data-16k/${x}"_"${y}_snrs/new_wav.scp data-16k/${x}"_"${y}_snrs/wav.scp
+        path=${save_16k_dir}/${x}_${y}_snrs/
+        rm data-16k/${x}_${y}_snrs/{reco2dur,spk2utt,utt2uniq,wav.scp}
+        cat data-16k/${x}_${y}_snrs/utt2lang | awk -v p=$path '{l=length($1);name=substr($1,7,l);print name "_10_snrs " p $1".wav"}' > data-16k/${x}_${y}_snrs/wav.scp
+        cat data-16k/${x}_${y}_snrs/utt2lang | awk -v p=$path '{l=length($1);name=substr($1,7,l);print name "_20_snrs " $2}' > data-16k/${x}_${y}_snrs/utt2spk
+        cp data-16k/${x}_${y}_snrs/utt2spk data-16k/${x}_${y}_snrs/utt2lang
+        utils/fix_data_dir.sh data-16k/${x}_${y}_snrs/
     done
 done
 ```
