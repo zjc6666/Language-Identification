@@ -55,7 +55,6 @@ mkdir data-16k/rats_channels_BCDFG_noise
 find ${rats_data}/channel_{B,C,D,F,G} -name '*.wav' > data-16k/rats_channels_BCDFG_noise/rats_channels_BCDFG_noise_file_list.txt
 cat data-16k/rats_channels_BCDFG_noise/rats_channels_BCDFG_noise_file_list.txt | awk '{ split($0, arr, "/"); c=arr[7]; l=length(arr[8]); name=substr(arr[8], 0, l-4); print name " "name}' >data-16k/rats_channels_BCDFG_noise/utt2spk
 cat data-16k/rats_channels_BCDFG_noise/rats_channels_BCDFG_noise_file_list.txt | awk '{ split($0, arr, "/"); c=arr[7]; l=length(arr[8]); name=substr(arr[8], 0, l-4); print name " "$0}' > data-16k/rats_channels_BCDFG_noise/wav.scp
-
 ```
 #### Run add noise scripts
 Before running, you need to change ```rats_data``` variable, change to your own rats noise data path.
