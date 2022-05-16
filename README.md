@@ -41,6 +41,23 @@ Different channels of rats data set are used as noise, in which channel A,E,H is
 
 At the same time, different SNR (5, 10, 15, 20) are used for noise addition.<br>
 The smaller the SNR, the greater the noise.<br>
+
+#### Organize noise data sets
+The noise data sets used to add noise to the training set and the test set are sorted out respectively.
+```
+rats_data=/home3/andrew219/python_scripts/extract_rats_noise/rats_channels/
+mkdir data-16k/rats_channels_AEH_noise
+find ${rats_data}/channel_{A,E,H} -name '*.wav' > data-16k/rats_channels_AEH_noise/rats_channels_AEH_noise_file_list.txt
+cat data-16k/rats_channels_AEH_noise/rats_channels_AEH_noise_file_list.txt | awk '{ split($0, arr, "/"); c=arr[7]; l=length(arr[8]); name=substr(arr[8], 0, l-4); print name " "name}' >data-16k/rats_channels_AEH_noise/utt2spk
+cat data-16k/rats_channels_AEH_noise/rats_channels_AEH_noise_file_list.txt | awk '{ split($0, arr, "/"); c=arr[7]; l=length(arr[8]); name=substr(arr[8], 0, l-4); print name " "$0}' > data-16k/rats_channels_AEH_noise/wav.scp
+
+mkdir data-16k/rats_channels_BCDFG_noise
+find ${rats_data}/channel_{B,C,D,F,G} -name '*.wav' > data-16k/rats_channels_BCDFG_noise/rats_channels_BCDFG_noise_file_list.txt
+cat data-16k/rats_channels_BCDFG_noise/rats_channels_BCDFG_noise_file_list.txt | awk '{ split($0, arr, "/"); c=arr[7]; l=length(arr[8]); name=substr(arr[8], 0, l-4); print name " "name}' >data-16k/rats_channels_BCDFG_noise/utt2spk
+cat data-16k/rats_channels_BCDFG_noise/rats_channels_BCDFG_noise_file_list.txt | awk '{ split($0, arr, "/"); c=arr[7]; l=length(arr[8]); name=substr(arr[8], 0, l-4); print name " "$0}' > data-16k/rats_channels_BCDFG_noise/wav.scp
+
+```
+#### Run add noise scripts
 Before running, you need to change ```rats_data``` variable, change to your own rats noise data path.
 
 ```
