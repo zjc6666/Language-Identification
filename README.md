@@ -3,7 +3,7 @@
 
 ## Data preparation
 ### upsampling to 16k
-Our proposed model aims to use the feature of wav2vec2 model, but the pretrained XLSR-53 wav2vec2 model is trained with 16K data. 
+Our proposed model aims to use the feature of wav2vec2 model, but the pretrained XLSR-53 wav2vec2 model is trained with 16K data. <br>
 Therefore, in order to ensure the effect of pretrained model, all data are transformed into 16K(includde train, valid and test set).
 
 ```
@@ -36,10 +36,11 @@ done
 ```
 
 ### Add Noise
-In order to test the performance of the system under noisy background, all data sets are denoised.
+In order to test the performance of the system under noisy background, all data sets are denoised.<br>
 Different channels of rats data set are used as noise, in which channel A,E,H is used as noise data of test set, B,C,D,F,G channel is used as noise of training set.
 
-At the same time, different SNR (5, 10, 15, 20) are used for noise addition, The smaller the SNR, the greater the noise.
+At the same time, different SNR (5, 10, 15, 20) are used for noise addition.<br>
+The smaller the SNR, the greater the noise.<br>
 Before running, you need to change ```rats_data``` variable, change to your own rats noise data path.
 
 ```
@@ -54,9 +55,10 @@ bash add-noise-for-lid.sh --steps 2 --src-train ../data-16k/lre_eval_10s --noise
 bash add-noise-for-lid.sh --steps 2 --src-train ../data-16k/lre_eval_30s --noise_dir ../data-16k/rats_noise_channel_AEH
 ```
 After run "add-noise-for-lid.sh" script, Each folder generates four additional folders
+```
 egs: 
   for lre_train, will generate lre_train_5_snrs、lre_train_10_snrs、lre_train_15_snrs、lre_train_20_snrs
-
+```
 ### Generate new wav file for noise data
 
 You should change this path "/home3/jicheng/source-data/lre17-16k/" to yourself path.
