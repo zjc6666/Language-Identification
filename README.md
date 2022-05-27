@@ -7,7 +7,7 @@ Our proposed model aims to use the feature of wav2vec2 model, but the pretrained
 Therefore, in order to ensure the effect of pretrained model, all data are transformed into 16K(includde train, valid and test set).
 
 ```
-utils/combine_data_dir.sh data/lre_train data/lre_valid data/lre17_dev_3s data/lre17_dev_10s data/lre17_dev_30s data/lre_train_all
+utils/combine_data_dir.sh data/lre_train data/lre17_dev_3s data/lre17_dev_10s data/lre17_dev_30s data/lre_train_all
 ## wav_scp: The wav.scp file of the dataset you want to upsample
 ## temp_dir: Temporary folders
 ## save_16k_dir: Save address of wav file after downsampling
